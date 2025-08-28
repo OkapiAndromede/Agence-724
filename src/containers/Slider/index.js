@@ -40,21 +40,21 @@ const Slider = () => {
               </div>
             </div>
           </div>
-          <div className="SlideCard__paginationContainer">
-            <div className="SlideCard__pagination">
-              {byDateDesc.map((_, radioIdx) => (
-                <input
-                  key={`${event.id}`}
-                  type="radio"
-                  name="radio-button"
-                  checked={idx === radioIdx}
-                />
-              ))}
-            </div>
-          </div>
-          {console.log(idx)}
         </Fragment>
       ))}
+      <div className="SlideCard__paginationContainer">
+        <div className="SlideCard__pagination">
+          {byDateDesc.map((event, idx) => (
+            <input
+              key={`_${event.id}`}
+              type="radio"
+              name="radio-button"
+              checked={index === idx}
+              readOnly
+            />
+          ))}
+        </div>
+      </div>
     </div>
   );
 };
