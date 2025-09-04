@@ -41,8 +41,10 @@ describe("When a page is created", () => {
     await screen.findByText("Christine");
     await screen.findByText("Isabelle");
   });
-  it("a footer is displayed", () => {
-    // to implement
+  it("a footer is displayed", async () => {
+    render(<Home />);
+    const footer = await screen.findByRole("contentinfo");
+    expect(footer).toBeInTheDocument();
   });
   it("an event card, with the last event, is displayed", () => {
     // to implement
