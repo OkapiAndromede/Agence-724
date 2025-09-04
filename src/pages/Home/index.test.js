@@ -32,8 +32,14 @@ describe("When a page is created", () => {
     const event = await screen.findAllByTestId("card-image-testid");
     expect(event.length).toEqual(9);
   });
-  it("a list a people is displayed", () => {
-    // to implement
+  it("a list a people is displayed", async () => {
+    render(<Home />);
+    await screen.findByText("Samira");
+    await screen.findByText("Jean-baptiste");
+    await screen.findByText("Alice");
+    await screen.findByText("Luís");
+    await screen.findByText("Christine");
+    await screen.findByText("Isabelle");
   });
   it("a footer is displayed", () => {
     // to implement
