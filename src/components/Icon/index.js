@@ -1,6 +1,15 @@
 /* istanbul ignore file */
 import PropTypes from "prop-types";
-
+/**
+ * Composant Icon
+ *
+ * Rend une balise SVG corespondant à l'icone demandé en fonction de la valeur de "name"
+ *
+ *
+ * @param {"twitch"|"facebook"|"twitter"|"youtube"|"close"} name : le nom de l'icone
+ *
+ * @returns {JSX.Element} Element SVG représentant l'icone
+ */
 const Icon = ({ name }) => {
   let icon;
   switch (name) {
