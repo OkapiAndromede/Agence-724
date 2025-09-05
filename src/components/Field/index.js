@@ -1,7 +1,21 @@
 import PropTypes from "prop-types";
 
 import "./style.scss";
-
+/**
+ * Composant Field réutilisable affichant un champ de formulaire
+ *
+ * Rend un input de type text ou un textarea selon la valeur du "type"
+ * @component
+ *
+ * @param {1|2} [type = FIELD_TYPES.INPUT_TEXT ] : type de champs :
+ * 1 = input de type text
+ * 2 = textarea
+ * @param {string} [label = ""] : texte affiché comme libéllé du champ
+ * @param {string} [name = "field-name"] : nom du champ
+ * @param {string} [placeholder = ""] : texte indicatif affiché dans le champ
+ *
+ * @returns {JSX.Element} composant Field rendu
+ */
 export const FIELD_TYPES = {
   INPUT_TEXT: 1,
   TEXTAREA: 2,
@@ -47,11 +61,11 @@ Field.propTypes = {
   label: PropTypes.string,
   placeholder: PropTypes.string,
 };
- Field.defaultProps = {
-   label: "",
-   placeholder: "",
-   type: FIELD_TYPES.INPUT_TEXT,
-   name: "field-name",
- }
+Field.defaultProps = {
+  label: "",
+  placeholder: "",
+  type: FIELD_TYPES.INPUT_TEXT,
+  name: "field-name",
+};
 
 export default Field;
