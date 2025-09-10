@@ -3,7 +3,24 @@ import { useData } from "../../contexts/DataContext";
 import { getMonth } from "../../helpers/Date";
 
 import "./style.scss";
-
+/**
+ * Composant Slider affichant un carrousel des derniers évènements
+ *
+ * Récupère les données des évènements via le hook personalisé 'useData()', puis :
+ * - Trie par ordre décroissant les derniers évènements "focus"
+ * - Affiche l'évènement avec une image, un titre, une description et une date
+ * - Fait défiler automatique les évènements toutes les 5 secondes
+ *
+ * @component
+ * @typedef {object} event : Objet contenant les propriétés associés à un évènement
+ * @property {string} id : identifiant unique de l'évènement
+ * @property {string} title : Titre de l'évènement
+ * @property {string} description : Description de l'évènement
+ * @property {string} cover : URL de l'image de l'évènement
+ * @property {string} date : Date de l'évènement
+ *
+ * @returns {JSX.Element} Composant Slider rendu
+ */
 const Slider = () => {
   const { data } = useData();
   const [index, setIndex] = useState(0);
