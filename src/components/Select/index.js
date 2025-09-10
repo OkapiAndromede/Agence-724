@@ -4,7 +4,20 @@ import { useState } from "react";
 import PropTypes from "prop-types";
 
 import "./style.scss";
-
+/**
+ * Composant Select affichant une liste déroulante personnalisée
+ *
+ * @component
+ *
+ * @param {string[]} selection : Tableau des valeurs disponible dans la liste
+ * @param {function} [onChange = () => null] : Fonction callback appellée quand une valeur est sélectionnée
+ * @param {string} [name = "select"] : Nom de l'input caché associé au composant
+ * @param {boolean} [titleEmpty = false] : Contrôle l'affichage de l'option par défaut "Toutes"
+ * @param {string} [label = ""] : Label affiché au dessus de la liste déroulante
+ * @param {string} [type = "normal"] : Type du composant utilisé pour la mise en page CSS
+ *
+ * @returns {JSX.Element} composant Select rendu
+ */
 const Select = ({
   selection,
   onChange,
