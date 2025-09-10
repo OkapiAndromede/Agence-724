@@ -9,6 +9,25 @@ const mockContactApi = () =>
     setTimeout(resolve, 500);
   });
 
+/**
+ * Composant Form affichant un formulaire de contact
+ *
+ * Le composant permet de :
+ * - Remplir et soumettre un formulaire de contact
+ * - Appeler une API simulée ("mockContactApi") lors de l'envoi
+ *
+ * Etats gérés :
+ * - "Sending" : Désactive le bouton "submit" et affiche "en cours"
+ * - "Erreur" : Appelle la fonction de callback 'onError' avec l'erreur
+ * - "Succès" : Appelle la fonction de callback 'onSuccess'
+ *
+ * @component
+ *
+ * @param {function} [onSuccess = () => null] : Fonction callback appelé après un envoi réussi du formulaire
+ * @param {function} [onError = () => null] : Fonction callback appelé en cas d'échec, reçoit l'objet erreur
+ *
+ * @returns {JSX.Element} Composant Form rendu
+ */
 const Form = ({ onSuccess, onError }) => {
   const [sending, setSending] = useState(false);
   const sendContact = useCallback(
