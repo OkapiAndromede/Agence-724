@@ -6,7 +6,23 @@ import Modal from "../Modal";
 import ModalEvent from "../ModalEvent";
 
 import "./style.css";
-
+/**
+ * Composant EventList affichant une liste d'évènement
+ *
+ * Récupère les données via le hook personalisé 'useData()' et propose :
+ * - un filtrage des évènements par catégorie (type d'évènement)
+ * - une pagination (maximum 9 évènements par page)
+ * - un affichage détaillé des évènements dans une modale
+ *
+ * Etats gérés :
+ * - "Erreur" : affiche un message d'erreur si la récupération des données échoue
+ * - "Chargement" : affiche un "loading" si les données ne sont pas encore disponible
+ * - "Succès" : affiche les évènements filtrés et paginés
+ *
+ * @component
+ *
+ * @returns {JSX.Element} composant EventList rendu
+ */
 const PER_PAGE = 9;
 
 const EventList = () => {
