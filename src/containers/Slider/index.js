@@ -3,6 +3,7 @@ import { useData } from "../../contexts/DataContext";
 import { getMonth } from "../../helpers/Date";
 
 import "./style.scss";
+import { sortDescending } from "../../utils/array";
 /**
  * Composant Slider affichant un carrousel des derniers évènements
  *
@@ -27,9 +28,10 @@ const Slider = () => {
   // const byDateDesc = data?.focus.sort((evtA, evtB) =>
   //   new Date(evtA.date) < new Date(evtB.date) ? -1 : 1
   // );
-  const byDateDesc = [...(data?.focus || [])].sort(
-    (evtA, evtB) => new Date(evtB.date) - new Date(evtA.date)
-  );
+  // const byDateDesc = [...(data?.focus || [])].sort(
+  //   (evtA, evtB) => new Date(evtB.date) - new Date(evtA.date)
+  // );
+  const byDateDesc = sortDescending(data?.focus);
   const nextCard = () => {
     setTimeout(
       () => setIndex(index < byDateDesc.length - 1 ? index + 1 : 0),
