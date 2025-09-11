@@ -1,6 +1,37 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import {
+  fireEvent,
+  queryByText,
+  render,
+  screen,
+  waitForElementToBeRemoved,
+  within,
+} from "@testing-library/react";
 import Home from "./index";
+import { useData } from "../../contexts/DataContext";
+import EventCard from "../../components/EventCard";
 
+jest.mock("../../contexts/DataContext", () => ({
+  useData: () => ({
+    data: {
+      events: Array.from({ length: 9 }, (_, i) => ({
+        id: i + 1,
+        title: `Event ${i + 1}`,
+        cover: `cover${i + 1}.jpg`,
+        date: "2022-03-29T20:28:45.744Z",
+        type: "soirée entreprise",
+      })),
+      people: [
+        { id: 1, name: "Samira", position: "Manager", photo: "samira.jpg" },
+        { id: 2, name: "Jean-baptiste", position: "Dev", photo: "jb.jpg" },
+        { id: 3, name: "Alice", position: "Designer", photo: "alice.jpg" },
+        { id: 4, name: "Luís", position: "DevOps", photo: "luis.jpg" },
+        { id: 5, name: "Christine", position: "RH", photo: "christine.jpg" },
+        { id: 6, name: "Isabelle", position: "PM", photo: "isabelle.jpg" },
+      ],
+    },
+    error: null,
+  }),
+}));
 describe("When Form is created", () => {
   it("a list of fields card is displayed", async () => {
     render(<Home />);
@@ -29,7 +60,8 @@ describe("When Form is created", () => {
 describe("When a page is created", () => {
   it("a list of events is displayed", async () => {
     render(<Home />);
-    const event = await screen.findAllByTestId("card-image-testid");
+    const section = screen.getByTestId("events-section");
+    const event = within(section).getAllByTestId("card-image-testid");
     expect(event.length).toEqual(9);
   });
   it("a list a people is displayed", async () => {
@@ -46,7 +78,7 @@ describe("When a page is created", () => {
     const footer = await screen.findByRole("contentinfo");
     expect(footer).toBeInTheDocument();
   });
-  it("an event card, with the last event, is displayed", () => {
+  it("an event card, with the last event, is displayed", async () => {
     // to implement
   });
 });
