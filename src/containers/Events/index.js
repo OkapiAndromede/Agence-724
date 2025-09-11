@@ -32,14 +32,14 @@ const EventList = () => {
   const [currentPage, setCurrentPage] = useState(1);
 
   const dataFiltered = filterType(data?.events, type);
-  const filteredEvents = filterPagination(dataFiltered, currentPage, PER_PAGE);
+  const paginatedEvents = filterPagination(dataFiltered, currentPage, PER_PAGE);
 
   const changeType = (evtType) => {
     setCurrentPage(1);
     setType(evtType);
   };
 
-  const pageNumber = Math.floor((filteredEvents?.length || 0) / PER_PAGE) + 1;
+  const pageNumber = Math.floor((paginatedEvents?.length || 0) / PER_PAGE) + 1;
   const typeList = new Set(data?.events.map((event) => event.type));
   return (
     <>
@@ -54,7 +54,7 @@ const EventList = () => {
             onChange={(value) => (value ? changeType(value) : changeType(null))}
           />
           <div id="events" className="ListContainer">
-            {filteredEvents.map((event) => (
+            {paginatedEvents.map((event) => (
               <Modal key={event.id} Content={<ModalEvent event={event} />}>
                 {({ setIsOpened }) => (
                   <EventCard
