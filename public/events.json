@@ -308,5 +308,43 @@
       "date": "2022-05-29T20:28:45.744Z",
       "cover": "/images/jakob-dalbjorn-cuKJre3nyYc-unsplash 1.png"
     }
+  ],
+  "people": [
+    {
+      "id": 22,
+      "name": "Samira",
+      "position": "CEO",
+      "photo": "/images/stephanie-liverani-Zz5LQe-VSMY-unsplash.png"
+    },
+    {
+      "id": 23,
+      "name": "Jean-baptiste",
+      "position": "Directeur marketing",
+      "photo": "/images/linkedin-sales-solutions-pAtA8xe_iVM-unsplash.png"
+    },
+    {
+      "id": 24,
+      "name": "Alice",
+      "position": "CXO",
+      "photo": "/images/christina-wocintechchat-com-SJvDxw0azqw-unsplash.png"
+    },
+    {
+      "id": 25,
+      "name": "Luís",
+      "position": "Animateur",
+      "photo": "/images/jonas-kakaroto-KIPqvvTOC1s-unsplash.png"
+    },
+    {
+      "id": 26,
+      "name": "Christine",
+      "position": "VP animation",
+      "photo": "/images/amy-hirschi-b3AYk8HKCl0-unsplash1.png"
+    },
+    {
+      "id": 27,
+      "name": "Isabelle",
+      "position": "VP communication",
+      "photo": "/images/christina-wocintechchat-com-0Zx1bDv5BNY-unsplash.png"
+    }
   ]
 }
