@@ -19,6 +19,7 @@ const Page = () => {
     (a, b) => new Date(b.date) - new Date(a.date)
   );
   const last = sortedEvents[0];
+  const team = data?.people;
   return (
     <>
       <header>
@@ -57,7 +58,7 @@ const Page = () => {
             </ServiceCard>
           </div>
         </section>
-        <section className="EventsContainer">
+        <section className="EventsContainer" data-testid="events-section">
           <h2 className="Title">Nos réalisations</h2>
           <EventList />
         </section>
@@ -65,36 +66,14 @@ const Page = () => {
           <h2 className="Title">Notre équipe</h2>
           <p>Une équipe d’experts dédiés à l’ogranisation de vos événements</p>
           <div className="ListContainer">
-            <PeopleCard
-              imageSrc="/images/stephanie-liverani-Zz5LQe-VSMY-unsplash.png"
-              name="Samira"
-              position="CEO"
-            />
-            <PeopleCard
-              imageSrc="/images/linkedin-sales-solutions-pAtA8xe_iVM-unsplash.png"
-              name="Jean-baptiste"
-              position="Directeur marketing"
-            />
-            <PeopleCard
-              imageSrc="/images/christina-wocintechchat-com-SJvDxw0azqw-unsplash.png"
-              name="Alice"
-              position="CXO"
-            />
-            <PeopleCard
-              imageSrc="/images/jonas-kakaroto-KIPqvvTOC1s-unsplash.png"
-              name="Luís"
-              position="Animateur"
-            />
-            <PeopleCard
-              imageSrc="/images/amy-hirschi-b3AYk8HKCl0-unsplash1.png"
-              name="Christine"
-              position="VP animation"
-            />
-            <PeopleCard
-              imageSrc="/images/christina-wocintechchat-com-0Zx1bDv5BNY-unsplash.png"
-              name="Isabelle"
-              position="VP communication"
-            />
+            {team?.map((employee) => (
+              <PeopleCard
+                key={employee.id}
+                imageSrc={employee.photo}
+                name={employee.name}
+                position={employee.position}
+              />
+            ))}
           </div>
         </section>
         <div className="FormContainer" id="contact">
