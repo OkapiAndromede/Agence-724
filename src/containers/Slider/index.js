@@ -1,4 +1,4 @@
-import { useEffect, useState, Fragment } from "react";
+import { useEffect, useState } from "react";
 import { useData } from "../../contexts/DataContext";
 import { getMonth } from "../../helpers/Date";
 
@@ -13,7 +13,7 @@ import { sortDescending } from "../../utils/array";
  * - Fait défiler automatique les évènements toutes les 5 secondes
  *
  * @component
- * @typedef {object} event : Objet contenant les propriétés associés à un évènement
+ * @typedef {Object} event : Objet contenant les propriétés associés à un évènement
  * @property {string} id : identifiant unique de l'évènement
  * @property {string} title : Titre de l'évènement
  * @property {string} description : Description de l'évènement
@@ -25,16 +25,11 @@ import { sortDescending } from "../../utils/array";
 const Slider = () => {
   const { data } = useData();
   const [index, setIndex] = useState(0);
-  // const byDateDesc = data?.focus.sort((evtA, evtB) =>
-  //   new Date(evtA.date) < new Date(evtB.date) ? -1 : 1
-  // );
-  // const byDateDesc = [...(data?.focus || [])].sort(
-  //   (evtA, evtB) => new Date(evtB.date) - new Date(evtA.date)
-  // );
-  const byDateDesc = sortDescending(data?.focus);
+  const eventSorted = sortDescending(data?.focus);
+
   const nextCard = () => {
     setTimeout(
-      () => setIndex(index < byDateDesc.length - 1 ? index + 1 : 0),
+      () => setIndex(index < eventSorted.length - 1 ? index + 1 : 0),
       5000
     );
   };
@@ -43,32 +38,32 @@ const Slider = () => {
   });
   return (
     <div className="SlideCardList">
-      {byDateDesc?.map((event, idx) => (
-        <Fragment key={event.title}>
-          <div
-            className={`SlideCard SlideCard--${
-              index === idx ? "display" : "hide"
-            }`}
-          >
-            <img src={event.cover} alt="forum" />
-            <div className="SlideCard__descriptionContainer">
-              <div className="SlideCard__description">
-                <h3>{event.title}</h3>
-                <p>{event.description}</p>
-                <div>{getMonth(new Date(event.date))}</div>
-              </div>
+      {eventSorted?.map((event, indexEvent) => (
+        <article
+          key={event.title}
+          className={`SlideCard SlideCard--${
+            index === indexEvent ? "display" : "hide"
+          }`}
+        >
+          <img src={event.cover} alt="forum" />
+
+          <div className="SlideCard__descriptionContainer">
+            <div className="SlideCard__description">
+              <h3>{event.title}</h3>
+              <p>{event.description}</p>
+              <div>{getMonth(new Date(event.date))}</div>
             </div>
           </div>
-        </Fragment>
+        </article>
       ))}
       <div className="SlideCard__paginationContainer">
         <div className="SlideCard__pagination">
-          {byDateDesc.map((event, idx) => (
+          {eventSorted.map((event, indexEvent) => (
             <input
               key={`_${event.id}`}
               type="radio"
               name="radio-button"
-              checked={index === idx}
+              checked={index === indexEvent}
               readOnly
             />
           ))}
