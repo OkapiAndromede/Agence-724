@@ -11,13 +11,11 @@ import Icon from "../../components/Icon";
 import Form from "../../containers/Form";
 import Modal from "../../containers/Modal";
 import { useData } from "../../contexts/DataContext";
+import { sortDescending } from "../../utils/array";
 
 const Page = () => {
-  // const { last } = useData();
   const { data } = useData();
-  const sortedEvents = [...(data?.events || [])].sort(
-    (a, b) => new Date(b.date) - new Date(a.date)
-  );
+  const sortedEvents = sortDescending(data?.events);
   const last = sortedEvents[0];
   const team = data?.people;
   return (
