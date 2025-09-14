@@ -1,14 +1,5 @@
-import {
-  fireEvent,
-  queryByText,
-  render,
-  screen,
-  waitForElementToBeRemoved,
-  within,
-} from "@testing-library/react";
+import { fireEvent, render, screen, within } from "@testing-library/react";
 import Home from "./index";
-import { useData } from "../../contexts/DataContext";
-import EventCard from "../../components/EventCard";
 
 jest.mock("../../contexts/DataContext", () => ({
   useData: () => ({
@@ -79,6 +70,9 @@ describe("When a page is created", () => {
     expect(footer).toBeInTheDocument();
   });
   it("an event card, with the last event, is displayed", async () => {
-    // to implement
+    render(<Home />);
+    const footer = await screen.findByRole("contentinfo");
+    const event = await within(footer).findByText("boom");
+    expect(event).toBeInTheDocument();
   });
 });
